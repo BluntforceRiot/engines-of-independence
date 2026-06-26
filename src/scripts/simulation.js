@@ -1072,11 +1072,36 @@ function applyEvent(state, event) {
 }
 
 function buildRoutineIssue(state, stats, populationChange) {
+  if (state.monthIndex > 0 && state.monthIndex % 12 === 0) {
+    return buildYearlyIssue(state, stats);
+  }
   const moneyTone = stats.netIncome >= 0 ? 'Treasury Turns Crank, Coins Fall Out' : 'Treasury Crank Squeaks, Coins Decline';
   const growthTone = populationChange > 8 ? 'families arrive with furniture and expectations' : populationChange < 0 ? 'boarding houses discover vacancies' : 'the town holds steady and complains efficiently';
   return {
     headline: moneyTone,
     summary: `This month ${growthTone}. Net ledger: ${formatMoney(stats.netIncome)}. Power ${(stats.powerReliability * 100).toFixed(0)}%, freight ${(stats.freightReliability * 100).toFixed(0)}%, trust ${stats.trust}.`
+  };
+}
+
+function buildYearlyIssue(state, stats) {
+  const year = getYear(state);
+  const dominantPressure = [
+    ['inflation', stats.inflation],
+    ['corruption', stats.corruption],
+    ['shadow money', stats.shadowEconomy],
+    ['pollution', stats.pollution],
+    ['debt service', stats.debtBurden]
+  ].sort((a, b) => b[1] - a[1])[0];
+  const dominantEngine = [
+    ['power', Math.round(stats.powerReliability * 100)],
+    ['freight', Math.round(stats.freightReliability * 100)],
+    ['public trust', stats.trust],
+    ['bank confidence', stats.bankStability],
+    ['trade confidence', stats.tradeConfidence]
+  ].sort((a, b) => b[1] - a[1])[0];
+  return {
+    headline: `${year} Annual Ledger: ${titleCase(dominantEngine[0])} Leads, ${titleCase(dominantPressure[0])} Answers`,
+    summary: `The yearly edition names ${dominantEngine[0]} as the town's strongest engine and ${dominantPressure[0]} as the pressure most likely to collect interest. Net ledger: ${formatMoney(stats.netIncome)}.`
   };
 }
 
@@ -1231,4 +1256,8 @@ function humanize(value) {
     .replace(/([A-Z])/g, ' $1')
     .replace(/[-_]/g, ' ')
     .toLowerCase();
+}
+
+function titleCase(value) {
+  return humanize(value).replace(/\b\w/g, (letter) => letter.toUpperCase());
 }

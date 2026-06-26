@@ -9,11 +9,15 @@
     "typecheck": "node scripts/typecheck.mjs",
     "test:sim": "node scripts/smoke-sim.mjs",
     "verify": "npm run typecheck && npm run test:sim && npm run build",
+    "package:review": "node scripts/package-review.mjs",
+    "verify:package": "node scripts/verify-package.mjs",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
-    "vite": "^6.4.3"
+    "vite": "^6.4.3",
+    "yauzl": "^3.4.0",
+    "yazl": "^3.3.1"
   },
   "dependencies": {
     "three": "^0.180.0"

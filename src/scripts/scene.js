@@ -18,6 +18,7 @@ export class BoardScene {
     this.zoom = 1;
     this.dragging = false;
     this.lastPointer = { x: 0, y: 0 };
+    this.pulses = [];
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -118,6 +119,18 @@ export class BoardScene {
     this.pan.set(0, 0, 0);
     this.zoom = 1;
     this.updateCamera();
+  }
+
+  pulseTile(x, y) {
+    const pulse = new THREE.Mesh(
+      new THREE.RingGeometry(0.34, 0.62, 28),
+      new THREE.MeshBasicMaterial({ color: 0xffd36a, transparent: true, opacity: 0.52, side: THREE.DoubleSide })
+    );
+    pulse.rotation.x = -Math.PI / 2;
+    pulse.position.set(x, 0.28, y);
+    pulse.userData = { born: performance.now(), duration: 620 };
+    this.scene.add(pulse);
+    this.pulses.push(pulse);
   }
 
   resizeProjectionOnly() {
@@ -484,6 +497,20 @@ export class BoardScene {
 
   animate() {
     requestAnimationFrame(() => this.animate());
+    const now = performance.now();
+    this.pulses = this.pulses.filter((pulse) => {
+      const age = now - pulse.userData.born;
+      const progress = Math.min(1, age / pulse.userData.duration);
+      pulse.scale.setScalar(1 + progress * 0.9);
+      pulse.material.opacity = 0.52 * (1 - progress);
+      if (progress >= 1) {
+        pulse.geometry.dispose();
+        pulse.material.dispose();
+        this.scene.remove(pulse);
+        return false;
+      }
+      return true;
+    });
     this.renderer.render(this.scene, this.camera);
   }
 }

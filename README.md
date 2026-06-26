@@ -4,6 +4,10 @@ Engines of Independence is a browser-playable industrial town strategy game abou
 
 This prototype was built for a friendly Summer AI competition as a static browser game. It is inspired by classic city-building strategy patterns, but uses its own theme, rules, UI language, simulation, and identity.
 
+Built for **Summer into AI Week 2: Independence Engines.**
+
+The core submission idea: infrastructure, credit, energy, freight, legitimacy, public works, information, and trust are all engines. Every engine makes independence more practical while creating pressure somewhere else in the system.
+
 Expected public demo URL once GitHub Pages is enabled:
 
 `https://bluntforceriot.github.io/engines-of-independence/`
@@ -29,6 +33,15 @@ npm run build
 
 The static build is written to `dist/`.
 
+## Review Packaging
+
+```sh
+npm run package:review
+npm run verify:package
+```
+
+`npm run package:review` creates `engines-of-independence-v09-review.zip` with portable forward-slash entries only. `npm run verify:package` extracts that ZIP to a temporary folder and runs the exact cold-package gate: `npm ci`, `npm run typecheck`, `npm run test:sim`, `npm run build`, and `npm audit --audit-level=moderate`.
+
 ## Verification
 
 ```sh
@@ -51,7 +64,7 @@ npm audit --audit-level=moderate
 - Next Month: advance one simulation month.
 - Run Year: advance up to 12 months, stopping early if the town collapses.
 - Issue Bond: borrow public money for expansion.
-- End Ledger: close the run and print the final edition.
+- Close Run / Print Final Ledger: ask for confirmation, close the run, and print the final edition.
 
 ## Core Gameplay
 
@@ -66,9 +79,11 @@ npm audit --audit-level=moderate
 - The simulation updates population, jobs, housing, power, freight, fuel dependency, food, revenue, maintenance, pollution, fire risk, health, trust, corruption, shadow economy, resilience, innovation, monetary trust, liquidity, credit, inflation, debt burden, bank stability, and outside trade confidence.
 - Tile placement matters through district effects: access, civic coverage, industrial conflict, farm freight chains, power support, bank/news/telegraph clusters, and worker safety adjacency.
 - The pressure board gives a compact readout of budget, power, freight, access, civic coverage, industrial conflict, banks, and inflation.
+- The Pressure Ledger summarizes doctrine stance, top benefits, top pressures, and the likely consequence of the current build.
+- The Town Clerk's First Ledger appears after starting a town with first-turn setup guidance.
 - The Town Desk advisor gives short contextual guidance based on live bottlenecks.
 - Charter Goals act as milestones with small rewards and newspaper headlines.
-- The Engine Gazette reports routine developments and event cards.
+- The Engine Gazette reports routine developments, annual ledger summaries, and event cards.
 - The run ends after 1935 or by collapse, then prints an ending archetype, score ledger, run metadata, and copyable summary.
 
 ## What Is an Engine?
@@ -142,6 +157,8 @@ Public demo candidate v0.9 is playable end-to-end:
 - Local browser save.
 - Bond funding.
 - Endgame score, town archetype, metadata, and copyable run summary.
+- Confirmation flow for closing the ledger and printing the final edition.
+- Final edition front-page summary with strongest engines, worst pressures, awards, and "What powered your independence?" breakdown.
 - GitHub Pages workflow that runs `npm ci`, typecheck, simulation smoke tests, and build before uploading `dist/`.
 
 Known limitations:
@@ -159,7 +176,7 @@ Known limitations:
 - High-level art remains procedural placeholder geometry. There are no copyrighted commercial game assets.
 - Local saves stay in the player's browser only.
 - The public demo workflow is `.github/workflows/deploy.yml`. In GitHub, enable Pages with **Source: GitHub Actions**, then push to `main` or run the workflow manually.
-- Built for Summer into AI Theme 1: 8-Bit America / American civic-machine imagination.
+- Built for Summer into AI Week 2: Independence Engines.
 
 ## AI Usage Note
 

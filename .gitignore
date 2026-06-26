@@ -20,9 +20,12 @@ tmp
 *.zip
 BUILD_LOG_*.txt
 BUILD_RECEIPT_*.md
+PACKAGE_VERIFY_*.md
 output
 Instructions.txt
 instructions update.txt
+Review*.txt
+review*.txt
 .DS_Store
 Thumbs.db
 dist

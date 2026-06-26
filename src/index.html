@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <script type="module" src="./scripts/main.js"></script>
   </head>
-  <body>
+  <body class="title-mode">
     <div id="app">
       <div id="render-target" aria-label="3D industrial town board"></div>
 
@@ -57,7 +57,7 @@
           <button id="next-turn-button" class="primary-button" type="button">Next Month</button>
           <button id="year-button" class="ghost-button" type="button">Run Year</button>
           <button id="bond-button" class="ghost-button" type="button">Issue Bond</button>
-          <button id="end-now-button" class="ghost-button" type="button">End Ledger</button>
+          <button id="end-now-button" class="ghost-button" type="button">Close Run / Print Final Ledger</button>
         </div>
         <div id="selected-tile" class="selected-tile"></div>
       </aside>
@@ -80,35 +80,57 @@
           <button class="small-button" id="reset-view-button" type="button">Reset View</button>
           <button class="small-button" id="focus-map-button" type="button">Focus Map</button>
         </div>
+        <div id="first-ledger" class="first-ledger"></div>
         <div id="advisor-panel" class="advisor-panel"></div>
         <div id="charter-goals" class="charter-goals"></div>
       </section>
 
       <div id="title-screen" class="modal-backdrop">
         <article class="title-card">
-          <p class="eyebrow">Summer AI prototype</p>
+          <p class="eyebrow">Summer into AI Week 2</p>
           <h1>Engines of Independence</h1>
-          <p class="subtitle">Current, combustion, credit, confidence.</p>
+          <p class="subtitle">Every solution is an engine. Every engine creates pressure.</p>
           <p>
-            Build an American industrial town where every solution is an engine:
-            coal, current, taxes, newspapers, saloons, banks, unions, and graft.
-          </p>
-          <p>
-            Grow from 1880 to 1935. Place buildings, choose doctrines, complete civic projects,
-            survive headlines, and discover what kind of republic your machinery becomes.
+            Build a town by choosing the engines underneath independence: power, freight, money,
+            public works, press, policy, and civic trust. Coal can industrialize you. Banks can
+            finance you. Newspapers can legitimize you. Saloons can fund a shadow economy. Taxes
+            can build the public good or light the fuse. Every lever helps. Every lever bites.
           </p>
           <label class="charter-select">
             <span>Starting Charter</span>
             <select id="charter-select"></select>
           </label>
           <div id="charter-brief" class="charter-brief"></div>
+          <div id="how-panel" class="how-panel hidden">
+            <strong>How the Engines Work</strong>
+            <ol>
+              <li>Build access first: roads, housing, jobs, and basic civic support.</li>
+              <li>Add engines: power, freight, finance, public works, press, policy, and social institutions.</li>
+              <li>Watch the pressure meters: inflation, corruption, unrest, trust, shadow economy, access, and legitimacy.</li>
+              <li>Each policy helps one system while stressing another.</li>
+              <li>Survive long enough to print the final ledger.</li>
+            </ol>
+          </div>
           <div class="quick-start">
             <strong>First moves</strong>
-            <span>Connect roads, add homes and jobs, build a power engine, then watch the Pressure Board before running a year.</span>
+            <span>Connect roads, add homes and jobs, build a power engine, then watch the Pressure Ledger before running a year.</span>
           </div>
           <div class="title-actions">
-            <button id="start-game-button" class="primary-button" type="button">Start Town</button>
-            <button id="load-game-button" class="ghost-button" type="button">Load Save</button>
+            <button id="start-game-button" class="primary-button" type="button">START THE TOWN</button>
+            <button id="how-button" class="ghost-button" type="button">HOW THE ENGINES WORK</button>
+            <button id="load-game-button" class="ghost-button" type="button">LOAD SAVED TOWN</button>
+          </div>
+        </article>
+      </div>
+
+      <div id="confirm-screen" class="modal-backdrop hidden">
+        <article class="confirm-card">
+          <p class="eyebrow">Print Final Ledger</p>
+          <h1>Close the town ledger?</h1>
+          <p>Close the town ledger and generate the final score?</p>
+          <div class="title-actions">
+            <button id="cancel-end-button" class="ghost-button" type="button">KEEP BUILDING</button>
+            <button id="confirm-end-button" class="primary-button" type="button">PRINT FINAL EDITION</button>
           </div>
         </article>
       </div>
@@ -119,14 +141,17 @@
           <h1 id="ending-title">Ledger Closed</h1>
           <p id="ending-summary"></p>
           <div id="ending-meta" class="ending-meta"></div>
+          <div id="ending-article" class="ending-article"></div>
           <div id="ending-scores" class="ending-scores"></div>
+          <textarea id="recap-fallback" class="recap-fallback hidden" readonly></textarea>
           <div class="title-actions">
-            <button id="copy-summary-button" class="ghost-button" type="button">Copy Run Summary</button>
+            <button id="copy-summary-button" class="ghost-button" type="button">Copy Recap</button>
             <button id="inspect-button" class="ghost-button" type="button">Inspect Town</button>
             <button id="restart-button" class="primary-button" type="button">Build Another Town</button>
           </div>
         </article>
       </div>
+      <div id="toast-layer" class="toast-layer" aria-live="polite"></div>
     </div>
   </body>
 </html>
