@@ -1049,6 +1049,10 @@ function renderEnding() {
       <h2>${escapeHtml(ending.title)}</h2>
       <p>${escapeHtml(getEndingArticle(ending, strongest, pressures))}</p>
     </section>
+    <section class="power-breakdown">
+      <p class="eyebrow">What powered your independence?</p>
+      <div>${breakdown.map((item) => `<span><strong>${escapeHtml(item.label)}</strong>${item.value}</span>`).join('')}</div>
+    </section>
     <section>
       <p class="eyebrow">Strongest Engines</p>
       <ol>${strongest.map((item) => `<li><strong>${escapeHtml(item.label)}</strong><span>${escapeHtml(item.note)} (${item.value})</span></li>`).join('')}</ol>
@@ -1060,10 +1064,6 @@ function renderEnding() {
     <section>
       <p class="eyebrow">Awards</p>
       <div class="award-row">${awards.map((award) => `<span>${escapeHtml(award)}</span>`).join('')}</div>
-    </section>
-    <section class="power-breakdown">
-      <p class="eyebrow">What powered your independence?</p>
-      <div>${breakdown.map((item) => `<span><strong>${escapeHtml(item.label)}</strong>${item.value}</span>`).join('')}</div>
     </section>
   `;
   els.endingScores.innerHTML = Object.entries(ending.score)

@@ -882,6 +882,16 @@ body.title-mode .help-panel {
   margin-top: 18px;
 }
 
+.ending-card > .title-actions {
+  position: sticky;
+  bottom: -1px;
+  z-index: 2;
+  margin: 12px -4px 0;
+  padding: 10px 4px;
+  border-top: 1px solid rgba(223, 185, 93, 0.2);
+  background: linear-gradient(180deg, rgba(27, 29, 31, 0.88), rgba(14, 18, 23, 0.98));
+}
+
 .ending-scores {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

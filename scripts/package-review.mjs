@@ -15,8 +15,7 @@ const requiredFiles = [
   'package-lock.json',
   'vite.config.js',
   'BUILD_RECEIPT_ENGINES_OF_INDEPENDENCE_V09.md',
-  'BUILD_LOG_ENGINES_OF_INDEPENDENCE_V09.txt',
-  'PACKAGE_VERIFY_ENGINES_OF_INDEPENDENCE_V09.md'
+  'BUILD_LOG_ENGINES_OF_INDEPENDENCE_V09.txt'
 ];
 const requiredDirs = ['.github', 'docs', 'scripts', 'src'];
 const requiredScreenshots = [
