@@ -1,0 +1,21 @@
+{
+  "name": "engines-of-independence",
+  "description": "Engines of Independence, a browser-playable industrial town strategy game about power, policy, money, and trust.",
+  "private": true,
+  "version": "0.9.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 3000",
+    "typecheck": "node scripts/typecheck.mjs",
+    "test:sim": "node scripts/smoke-sim.mjs",
+    "verify": "npm run typecheck && npm run test:sim && npm run build",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "vite": "^6.4.3"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  }
+}

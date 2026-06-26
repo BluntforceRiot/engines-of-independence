@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Engines of Independence, a browser city-building strategy game about industrial, civic, social, monetary, and shadow engines."
+    />
+    <title>Engines of Independence</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="render-target" aria-label="3D industrial town board"></div>
+
+      <header class="hud" aria-label="Town status">
+        <div>
+          <p class="eyebrow">Town machinery ledger</p>
+          <h1>Engines of Independence <span class="version-pill">v0.9 public demo</span></h1>
+        </div>
+        <div class="hud-grid" id="hud-stats"></div>
+      </header>
+
+      <aside class="build-panel panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Build</p>
+            <h2>Town Machinery</h2>
+          </div>
+          <button class="small-button" id="new-game-button" type="button">New</button>
+        </div>
+        <div id="build-menu" class="build-menu"></div>
+      </aside>
+
+      <aside class="engine-panel panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Policies</p>
+            <h2>Engines of Rule</h2>
+          </div>
+          <button class="small-button" id="save-button" type="button">Save</button>
+        </div>
+        <div id="policy-controls" class="control-stack"></div>
+        <div id="doctrine-controls" class="control-stack"></div>
+        <div class="project-section">
+          <div class="section-heading">
+            <p class="eyebrow">Civic Projects</p>
+            <h3>One-Time Engines</h3>
+          </div>
+          <div id="project-controls" class="project-controls"></div>
+        </div>
+        <div class="forecast-panel" id="forecast-panel"></div>
+        <div class="turn-controls">
+          <button id="next-turn-button" class="primary-button" type="button">Next Month</button>
+          <button id="year-button" class="ghost-button" type="button">Run Year</button>
+          <button id="bond-button" class="ghost-button" type="button">Issue Bond</button>
+          <button id="end-now-button" class="ghost-button" type="button">End Ledger</button>
+        </div>
+        <div id="selected-tile" class="selected-tile"></div>
+      </aside>
+
+      <section class="newspaper panel" aria-live="polite">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">The Engine Gazette</p>
+            <h2 id="newspaper-headline">Town Awaits First Machinery</h2>
+          </div>
+          <span id="issue-date" class="issue-date">Jan 1880</span>
+        </div>
+        <p id="newspaper-copy"></p>
+        <ol id="event-feed" class="event-feed"></ol>
+      </section>
+
+      <section class="help-panel panel">
+        <p><strong>Controls:</strong> left click places the selected engine. Wheel zooms. Drag with right mouse or middle mouse to pan. F focuses the map; Esc restores UI.</p>
+        <div class="help-actions">
+          <button class="small-button" id="reset-view-button" type="button">Reset View</button>
+          <button class="small-button" id="focus-map-button" type="button">Focus Map</button>
+        </div>
+        <div id="advisor-panel" class="advisor-panel"></div>
+        <div id="charter-goals" class="charter-goals"></div>
+      </section>
+
+      <div id="title-screen" class="modal-backdrop">
+        <article class="title-card">
+          <p class="eyebrow">Summer AI prototype</p>
+          <h1>Engines of Independence</h1>
+          <p class="subtitle">Current, combustion, credit, confidence.</p>
+          <p>
+            Build an American industrial town where every solution is an engine:
+            coal, current, taxes, newspapers, saloons, banks, unions, and graft.
+          </p>
+          <p>
+            Grow from 1880 to 1935. Place buildings, choose doctrines, complete civic projects,
+            survive headlines, and discover what kind of republic your machinery becomes.
+          </p>
+          <label class="charter-select">
+            <span>Starting Charter</span>
+            <select id="charter-select"></select>
+          </label>
+          <div id="charter-brief" class="charter-brief"></div>
+          <div class="quick-start">
+            <strong>First moves</strong>
+            <span>Connect roads, add homes and jobs, build a power engine, then watch the Pressure Board before running a year.</span>
+          </div>
+          <div class="title-actions">
+            <button id="start-game-button" class="primary-button" type="button">Start Town</button>
+            <button id="load-game-button" class="ghost-button" type="button">Load Save</button>
+          </div>
+        </article>
+      </div>
+
+      <div id="ending-screen" class="modal-backdrop hidden">
+        <article class="ending-card">
+          <p class="eyebrow">Final Edition</p>
+          <h1 id="ending-title">Ledger Closed</h1>
+          <p id="ending-summary"></p>
+          <div id="ending-meta" class="ending-meta"></div>
+          <div id="ending-scores" class="ending-scores"></div>
+          <div class="title-actions">
+            <button id="copy-summary-button" class="ghost-button" type="button">Copy Run Summary</button>
+            <button id="inspect-button" class="ghost-button" type="button">Inspect Town</button>
+            <button id="restart-button" class="primary-button" type="button">Build Another Town</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>
